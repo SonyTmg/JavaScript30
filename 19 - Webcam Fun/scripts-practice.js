@@ -1,8 +1,4 @@
-// which is class of player, video from webcam is going to come to video element
-// every 16 milliseconds we are going to put it in canvas
-// strip is where we all put all of our images
-// context is where all the work happens
-// snap  and audio is where all the sound happens when we click
+
 const video = document.querySelector('.player');
 const canvas = document.querySelector('.photo');
 const ctx = canvas.getContext('2d');
@@ -59,7 +55,8 @@ function takePhoto() {
   snap.currentTime = 0;
   snap.play();
   // now that we already played the sound
-  // what we can do is take the data out of the canvas
+  // what we can do is take the data out of the canvas and we will pass the image
+  // after this  we are going to add event listener in the last line
   const data = canvas.toDataURL('image/jpeg');
   // console.log(data);
   // we get lots of description which is called "Base64"
@@ -68,10 +65,15 @@ function takePhoto() {
 
   // this is creating an anchor link. "link.href is going to equal the data"
   const link = document.createElement('a');
+  // we are setting href for the anchor tag
+  // we are putting image in anchor tags href attribute
   link.href = data;
+  // we are setting download attribute with value beautiful
   link.setAttribute('download', 'beautiful');
   // link.textContent = 'Download Image';
+  // we will just add inner html in anchor tag
   link.innerHTML = `<img src="{data}" alt="pweety girl" />`;
+
   strip.insertBefore(link, strip.firstChild);
 }
 
